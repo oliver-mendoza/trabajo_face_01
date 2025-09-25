@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi Colección — Inventario Personal</title>
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos compilados desde SASS -->
+  <link rel="stylesheet" href="dist/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">Mi Colección</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#form">Agregar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#list">Lista</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container app-grid" id="app">
+    <!-- Formulario (sección semántica) -->
+    <section id="form" class="card card-body">
+      <h2>Agregar / Editar Ítem</h2>
+      <form id="itemForm" novalidate>
+        <div class="row g-2">
+          <div class="col-md-6">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+            <div class="invalid-feedback">Ingresa el título.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="creator" class="form-label">Autor / Marca</label>
+            <input type="text" id="creator" name="creator" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label for="category" class="form-label">Categoría</label>
+            <select id="category" name="category" class="form-select" required>
+              <option value="">-- Seleccionar --</option>
+              <option>Libros</option>
+              <option>Juegos</option>
+              <option>Figuras</option>
+              <option>Películas</option>
+              <option>Otro</option>
+            </select>
+            <div class="invalid-feedback">Selecciona una categoría.</div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="quantity" class="form-label">Cantidad</label>
+            <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1" required>
+            <div class="invalid-feedback">Cantidad mínima 1.</div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="acquired" class="form-label">Fecha de adquisición</label>
+            <input type="date" id="acquired" name="acquired" class="form-control">
+          </div>
+
+          <div class="col-12">
+            <label for="notes" class="form-label">Notas</label>
+            <textarea id="notes" name="notes" class="form-control" rows="2"></textarea>
+          </div>
+
+          <div class="col-12 d-flex gap-2 mt-2">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="favorite" name="favorite">
+              <label class="form-check-label" for="favorite">Favorito</label>
+            </div>
+            <button type="submit" class="btn btn-primary" id="saveBtn">Guardar</button>
+            <button type="button" class="btn btn-secondary" id="resetBtn">Limpiar</button>
+          </div>
+        </div>
+        <input type="hidden" id="editId">
+      </form>
+    </section>
+
+    <!-- Resumen / Tabla -->
+    <section id="list" class="card card-body">
+      <h2>Lista de Ítems</h2>
+
+      <!-- filtros rápidos (Bootstrap) -->
+      <div class="mb-2 d-flex flex-wrap gap-2">
+        <button class="btn btn-outline-secondary btn-sm" id="filterAll">Todos</button>
+        <button class="btn btn-outline-secondary btn-sm" id="filterFav">Favoritos</button>
+        <button class="btn btn-outline-secondary btn-sm" id="clearStorage">Borrar todo</button>
+      </div>
+
+      <!-- Tabla semántica -->
+      <div class="table-responsive">
+        <table class="table table-striped" id="itemsTable">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Categoría</th>
+              <th>Cantidad</th>
+              <th>Adquisición</th>
+              <th>Favorito</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- filas generadas por JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Galería de tarjetas (Flexbox) -->
+      <h3>Vista en tarjetas</h3>
+      <div id="cardsContainer" class="cards-grid">
+        <!-- tarjetas generadas por JS -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer text-center py-3">
+    <small>Proyecto — Inventario Personal • Hecho por el equipo</small>
+  </footer>
+
+  <!-- Bootstrap JS (opcional para componentes) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- App JS -->
+  <script src="js/app.js"></script>
+</body>
+</html>
